@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { RepositoryItem } from "./RepositoryItem";
 
 import '../styles/repositories.scss';
+import '../styles/input.scss';
 
 interface Repository {
   name: string;
@@ -11,6 +12,11 @@ interface Repository {
 
 export function RepositoryList() {
   const [repositories, setRepositories] = useState<Repository[]>([]);
+  const [search, setSearch] = useState('');
+  
+  const filteredRepos = search.length > 0 
+    ? repositories.filter(item => item.name.includes(search))
+    : [];
 
   useEffect(() => {
     fetch('https://api.github.com/users/Feelpe/repos')
@@ -21,11 +27,28 @@ export function RepositoryList() {
   return (
     <section className="repository-list">
       <h1>Lista de repositórios</h1>
+      <input
+        type="search"
+        placeholder="Encontre um Repositório"
+        className="input-repos"
+        onChange={e => setSearch(e.target.value)}
+        value={search}
+      />
 
       <ul>
-        {repositories.map(repository => {
-          return <RepositoryItem key={repository.name} repository={repository} />
-        })}
+        {search.length > 0 ? (
+          <>
+            {filteredRepos.map(item => {
+              return <RepositoryItem key={item.name} repository={item} />
+            })}
+          </>
+        ) : (
+          <>
+            {repositories.map(repository => {
+              return <RepositoryItem key={repository.name} repository={repository} />
+            })}
+          </>
+        )}
       </ul>
     </section>
   )
