@@ -6,7 +6,7 @@ It's a list of repositories of my Github with a input search.
 # Running the app
 
 ## Dependent of 
-Install yarn\
+yarn
 
 ## In the project directory, you can run:
 
