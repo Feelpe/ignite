@@ -15,7 +15,7 @@ export function RepositoryList() {
   const [search, setSearch] = useState('');
   
   const filteredRepos = search.length > 0 
-    ? repositories.filter(item => item.name.includes(search))
+    ? repositories.filter(repository => repository.name.includes(search))
     : [];
 
   useEffect(() => {
@@ -38,8 +38,8 @@ export function RepositoryList() {
       <ul>
         {search.length > 0 ? (
           <>
-            {filteredRepos.map(item => {
-              return <RepositoryItem key={item.name} repository={item} />
+            {filteredRepos.map(repository => {
+              return <RepositoryItem key={repository.name} repository={repository} />
             })}
           </>
         ) : (
