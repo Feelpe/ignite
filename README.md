@@ -3,12 +3,12 @@
 A project for training React, typescript, bebel and webpack base. \
 It's a list of repositories of my Github with a input search.
 
-# Running the app
+## Running the app
 
-## Dependent of 
+### Dependent of 
 yarn
 
-## In the project directory, you can run:
+### In the project directory, you can run:
 
 ```bash
   #Installation
